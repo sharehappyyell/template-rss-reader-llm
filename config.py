@@ -12,7 +12,7 @@ MAX_PROMPT_LENGTH = int(os.getenv("MAX_PROMPT_LENGTH", 4096))
 # --- クローラー設定 ---
 PRUNE_FILTER = PruningContentFilter(
     threshold_type="fixed",
-    threshold=0.7
+    threshold=0.5
 )
 MD_GENERATOR = DefaultMarkdownGenerator(content_filter=PRUNE_FILTER)
 CRAWLER_CONFIG = CrawlerRunConfig(
