@@ -1,0 +1,4 @@
+ollama
+crawl4ai
+feedparser
+requests
