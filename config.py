@@ -5,7 +5,7 @@ from crawl4ai import CrawlerRunConfig, BrowserConfig, DefaultMarkdownGenerator, 
 # --- 設定 (環境変数がなければデフォルト値を使用) ---
 RSS_URL = os.getenv("RSS_URL", "RSS_URL")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "DISCORD_WEBHOOK_URL")
-OLLAMA_MODEL_NAME = os.getenv("OLLAMA_MODEL_NAME", "template-extractor")
+OLLAMA_MODEL_NAME = os.getenv("OLLAMA_MODEL_NAME", "extractor")
 TIMESTAMP_FILE = os.getenv("TIMESTAMP_FILE", "last_item.json")
 MAX_PROMPT_LENGTH = int(os.getenv("MAX_PROMPT_LENGTH", 4096))
 
