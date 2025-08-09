@@ -64,7 +64,7 @@ def fetch_new_links(rss_url: str) -> List[str]:
         print(f"✅ {len(new_entries)}件の新しい記事が見つかりました。")
         print("最大取得数制限: ", MAX_LOAD_ITEM)
 
-        new_entries_trimmed = new_entries[:MAX_LOAD_ITEM]  # 最大取得数を制限
+        new_entries_trimmed = new_entries[-MAX_LOAD_ITEM:]  # 最大取得数を制限
 
         # 4. 最大取得数を制限した中で新しい記事の中で最も新しいものを取得
         latest_entry = max(
