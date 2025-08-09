@@ -1,7 +1,7 @@
 name: Ollama Python Push Workflow
 on:
   schedule:
-    - cron: '0 */4 * * *' # 4時間毎に実行
+    - cron: '0 */2 * * *' # 2時間毎に実行
   workflow_dispatch:
 env:
   RSS_URL: ${{secrets.RSS_URL}}

@@ -5,7 +5,7 @@ import calendar  # time.struct_timeをUTCタイムスタンプに変換するた
 from typing import List
 
 # 設定ファイルからタイムスタンプファイルのパスをインポート
-from config import TIMESTAMP_FILE
+from config import TIMESTAMP_FILE, MAX_LOAD_ITEM
 
 
 def _is_new_item(item, last_item_timestamp: time.struct_time) -> bool:
@@ -61,15 +61,22 @@ def fetch_new_links(rss_url: str) -> List[str]:
 
     # 3. 新しい記事が見つかった場合のみ処理を実行
     if new_entries:
-        # 新しい記事の中から最も公開時刻が新しいものを探す
+        print(f"✅ {len(new_entries)}件の新しい記事が見つかりました。")
+        print("最大取得数制限: ", MAX_LOAD_ITEM)
+
+        new_entries_trimmed = new_entries[:MAX_LOAD_ITEM] # 最大取得数を制限
+
+        # 4. 最大取得数を制限した中で新しい記事の中で最も新しいものを取得
         latest_entry = max(
-            new_entries, key=lambda item: item['published_parsed'])
-        latest_timestamp_struct = latest_entry['published_parsed']
+            new_entries_trimmed,
+            key=lambda item: item['published_parsed']
+        )
 
-        print(f"✅ {len(new_entries)}件の新しい記事が見つかりました。タイムスタンプを更新します。")
-
-        # 最も新しい記事の公開時刻をファイルに書き込む
-        _write_last_item_timestamp(latest_timestamp_struct, TIMESTAMP_FILE)
+        # 5. 最大取得数を制限した中で最も新しい記事の公開時刻をファイルに書き込む
+        _write_last_item_timestamp(
+            latest_entry['published_parsed'],
+            TIMESTAMP_FILE
+        )
 
         # 新しい記事のリンクを返す（公開時刻の降順でソート）
         new_links = [
