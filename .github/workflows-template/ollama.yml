@@ -22,7 +22,7 @@ jobs:
           python-version: '3.x'
       - name: Setup Library
         run: |
-          ollama create template-extractor -f ./Modelfile
+          ollama create extractor -f ./Modelfile
           pip install -r requirements.txt
           playwright install
       - name: Run Main Python
