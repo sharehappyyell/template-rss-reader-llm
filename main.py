@@ -2,10 +2,10 @@ import asyncio
 
 # 作成した各モジュールと設定をインポート
 from config import RSS_URL, MAX_PROMPT_LENGTH, DISCORD_WEBHOOK_URL, discord_payload
-from rss_handler import fetch_new_links
-from web_crawler import get_content_from_url
-from ollama_client import extract_summary_info
-from discord_notifier import send_to_discord
+from util.rss_handler import fetch_new_links
+from util.web_crawler import get_content_from_url
+from util.ollama_client import extract_summary_info
+from util.discord_notifier import send_to_discord
 
 
 async def process_link(url: str):
