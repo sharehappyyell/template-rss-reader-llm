@@ -9,6 +9,7 @@ OLLAMA_MODEL_NAME = os.getenv("OLLAMA_MODEL_NAME", "extractor")
 TIMESTAMP_FILE = os.getenv("TIMESTAMP_FILE", "last_item.json")
 MAX_LOAD_ITEM = int(os.getenv("MAX_LOAD_ITEM", 3))
 MAX_PROMPT_LENGTH = int(os.getenv("MAX_PROMPT_LENGTH", 4096))
+OLLAMA_TIMEOUT_SECONDS = int(os.getenv("OLLAMA_TIMEOUT_SECONDS", 2700))
 
 # --- クローラー設定 ---
 PRUNE_FILTER = PruningContentFilter(

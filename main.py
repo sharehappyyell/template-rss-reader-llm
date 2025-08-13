@@ -1,7 +1,7 @@
 import asyncio
 
 # 作成した各モジュールと設定をインポート
-from config import RSS_URL, MAX_PROMPT_LENGTH, DISCORD_WEBHOOK_URL, discord_payload
+from config import RSS_URL, MAX_PROMPT_LENGTH, DISCORD_WEBHOOK_URL, discord_payload, OLLAMA_TIMEOUT_SECONDS
 from util.rss_handler import fetch_new_links
 from util.web_crawler import get_content_from_url
 from util.ollama_client import extract_summary_info
@@ -24,7 +24,7 @@ async def process_link(url: str):
     prompt = content.markdown.fit_markdown[:MAX_PROMPT_LENGTH]
 
     # Ollamaで情報を抽出
-    summary_info = extract_summary_info(prompt)
+    summary_info = extract_summary_info(prompt, OLLAMA_TIMEOUT_SECONDS)
 
     if not summary_info:
         return

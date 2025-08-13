@@ -1,7 +1,7 @@
+import time
 from typing import Optional
 import xml.etree.ElementTree as ET
 import ollama
-from typing import Optional
 import dataclasses
 import re
 
@@ -9,22 +9,40 @@ import re
 from config import OLLAMA_MODEL_NAME, SummaryInfo
 
 
-def extract_summary_info(text: str) -> Optional[SummaryInfo]:
+def extract_summary_info(text: str, timeout_seconds: int = 60) -> Optional[SummaryInfo]:
     """
     Ollamaモデルを呼び出してテキストから要約情報を抽出する。
+    指定した時間以上かかった場合はタイムアウトとして処理し、それまでの生成結果を返す。
     """
     print("🤖 Ollamaで要約を生成しています...")
+    start_time = time.time()
+    generated_text = ""
+
     try:
-        response = ollama.chat(
+        # ollama.chatをstream=Trueで実行
+        stream = ollama.chat(
             model=OLLAMA_MODEL_NAME,
             messages=[
                 {
                     'role': 'user',
                     'content': text,
                 },
-            ]
+            ],
+            stream=True
         )
-        return parse_summary_xml(response['message']['content'])
+
+        for chunk in stream:
+            # 各チャンクの受信後に経過時間をチェック
+            elapsed_time = time.time() - start_time
+            if elapsed_time > timeout_seconds:
+                print(f"⌛ タイムアウト ({timeout_seconds}秒)になりました。それまでの生成結果を返します。")
+                return parse_summary_xml(generated_text)
+
+            # チャンクからコンテンツを結合
+            content = chunk['message']['content']
+            generated_text += content
+
+        return parse_summary_xml(generated_text)
 
     except Exception as e:
         print(f"❌ Ollamaでの要約中にエラーが発生しました: {e}")
