@@ -29,5 +29,5 @@ SYSTEM """あなたは、与えられた[テンプレート]商品関連の記�
 """
 
 # パラメータ設定 (指示に忠実な出力をさせるため temperature を低めに設定)
-PARAMETER temperature 0
+PARAMETER temperature 0.1
 PARAMETER seed 55
