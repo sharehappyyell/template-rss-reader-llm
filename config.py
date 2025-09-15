@@ -31,10 +31,8 @@ BROWSER_CONFIG = BrowserConfig(
 @dataclass
 class SummaryInfo:
     """要約情報を格納するデータクラス。"""
-    name: str
+    title: str
     doc: str
-    price: str
-    url: str
 
 
 def discord_payload(summary_info: SummaryInfo, url: str) -> dict:
@@ -43,13 +41,8 @@ def discord_payload(summary_info: SummaryInfo, url: str) -> dict:
         "content": f"[情報元URL]({url})",
         "embeds": [
             {
-                "title": summary_info.name,
-                "description": summary_info.doc,
-                "url": summary_info.url,
-                "fields": [
-                    {"name": "価格", "value": summary_info.price, "inline": False},
-                    {"name": "関連するURL", "value": summary_info.url, "inline": False}
-                ]
+                "title": summary_info.title,
+                "description": summary_info.doc
             }
         ]
     }
