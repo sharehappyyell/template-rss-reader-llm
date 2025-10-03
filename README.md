@@ -17,7 +17,9 @@ Discordに通知するためのテンプレートです。
 ### 2. Repository secrets の設定
 
 次に、リポジトリに2つの重要な情報を「Secret」として登録します。
+
 リポジトリの Settings > Secrets and variables > Actions に移動し、以下の2つのRepository secretsを登録してください。
+
 これにより、URLなどの機密情報を安全に管理できます。
 
 - **`DISCORD_WEBHOOK_URL`**: 通知を送りたいDiscordチャンネルのWebhook URLを設定します。
@@ -34,5 +36,7 @@ Discordに通知するためのテンプレートです。
 最後に、このプロジェクトの自動化の仕組みであるGitHub Actionsを有効にします。
 
 リポジトリ内にある `.github/workflows-template` という名前のフォルダを `.github/workflows` に変更します。
+
 これだけで設定は完了です。GitHub Actionsが有効になり、2時間毎にRSSフィードをチェックして、要約がDiscordに自動で投稿されるようになります。
+
 なお、チェックする周期の時間は　`ollama.yml` から変更できます。
