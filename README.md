@@ -1,6 +1,5 @@
 # template-rss-reader-llm
-このプロジェクトは、RSSフィードの情報をLLM（大規模言語モデル）を使って要約し、 
-Discordに通知するためのテンプレートです。
+このプロジェクトは、RSSフィードの情報をLLM（大規模言語モデル）を使って要約し、<br>Discordに通知するためのテンプレートです。
 
 ## 使い方
 このテンプレートをリポジトリで利用するには、以下の3つのステップを設定してください。
@@ -16,13 +15,11 @@ Discordに通知するためのテンプレートです。
 
 ### 2. Repository secrets の設定
 
-次に、リポジトリに2つの重要な情報を「Secret」として登録します。
-リポジトリの Settings > Secrets and variables > Actions に移動し、以下の2つのRepository secretsを登録してください。
-これにより、URLなどの機密情報を安全に管理できます。
+次に、リポジトリに2つの重要な情報を「Secret」として登録します。<br>リポジトリの Settings > Secrets and variables > Actions に移動し、以下の2つのRepository secretsを登録してください。<br>これにより、URLなどの機密情報を安全に管理できます。
 
 - **`DISCORD_WEBHOOK_URL`**: 通知を送りたいDiscordチャンネルのWebhook URLを設定します。
   - サーバーリストから適当なサーバーを選択 > ＋ボタンからチャンネルを追加
-  - サーバーを右クリック > サーバー設定 > 連携サービス > ウェブフック > 新しいウェブフック > お名前、チャンネル名を設定し、ウェブフックURLをコピー
+  - サーバーを右クリック > サーバー設定 > 連携サービス > ウェブフック > 新しいウェブフック<br> > お名前、チャンネル名を設定し、ウェブフックURLをコピー
 
 - **`RSS_URL`**: 読み込みたいRSSフィードのURLを設定します。
   - WordPress系サイトの場合は、URLの最後に/feedをつけます。　例）https://サイトURL/feed
@@ -33,6 +30,4 @@ Discordに通知するためのテンプレートです。
 
 最後に、このプロジェクトの自動化の仕組みであるGitHub Actionsを有効にします。
 
-リポジトリ内にある `.github/workflows-template` という名前のフォルダを `.github/workflows` に変更します。
-これだけで設定は完了です。GitHub Actionsが有効になり、2時間毎にRSSフィードをチェックして、要約がDiscordに自動で投稿されるようになります。
-なお、チェックする周期の時間は　`ollama.yml` から変更できます。
+リポジトリ内にある `.github/workflows-template` という名前のフォルダを `.github/workflows` に変更します。<br>これだけで設定は完了です。GitHub Actionsが有効になり、2時間毎にRSSフィードをチェックして、要約がDiscordに自動で投稿されるようになります。<br>なお、チェックする周期の時間は　`ollama.yml` から変更できます。
