@@ -17,15 +17,18 @@ Discordに通知するためのテンプレートです。
 ### 2. Repository secrets の設定
 
 次に、リポジトリに2つの重要な情報を「Secret」として登録します。  
-リポジトリの Settings > Secrets and variables > Actions に移動し、以下の2つのRepository secretsを登録してください。  
+リポジトリの Settings > Secrets and variables > Actions に移動し、`Repository secrets` に以下の2つのRepository secretsを登録してください。  
 これにより、URLなどの機密情報を安全に管理できます。
-
-- **`DISCORD_WEBHOOK_URL`**: 通知を送りたいDiscordチャンネルのWebhook URLを設定します。
+- **`Name`**:**`DISCORD_WEBHOOK_URL`**
+- **`Secrets`**:**`https://discord.com/api/webhooks/xxxx/xxxx`**
+  - 通知を送りたいDiscordチャンネルのWebhook URLを設定します。
   - サーバーリストから適当なサーバーを選択 > ＋ボタンからチャンネルを追加
   - サーバーを右クリック > サーバー設定 > 連携サービス > ウェブフック > 新しいウェブフック  
      > お名前、チャンネル名を設定し、ウェブフックURLをコピー
-
-- **`RSS_URL`**: 読み込みたいRSSフィードのURLを設定します。
+     
+- **`Name`**:**`RSS_URL`**
+- **`Secrets`**:**`https://example.com/feed`**
+  - 読み込みたいRSSフィードのURLを設定します。
   - WordPress系サイトの場合は、URLの最後に/feedをつけます。　例）https://サイトURL/feed
 
 -----
