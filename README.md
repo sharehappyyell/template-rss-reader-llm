@@ -21,14 +21,14 @@ Discordに通知するためのテンプレートです。
 これにより、URLなどの機密情報を安全に管理できます。
 - １つ目
   - **`Name`**:**`DISCORD_WEBHOOK_URL`**
-  - **`Secrets`**:**`https://discord.com/api/webhooks/xxxx/xxxx`**
+  - **`Secret`**:**`https://discord.com/api/webhooks/xxxx/xxxx`**
     - 通知を送りたいDiscordチャンネルのWebhook URLを設定します。
     - サーバーリストから適当なサーバーを選択 > ＋ボタンからチャンネルを追加。
     - サーバーを右クリック > サーバー設定 > 連携サービス > ウェブフック > 新しいウェブフック<br> > お名前、チャンネル名を設定し、ウェブフックURLをコピー
      
 - ２つ目
   - **`Name`**:**`RSS_URL`**
-  - **`Secrets`**:**`https://example.com/feed`**
+  - **`Secret`**:**`https://example.com/feed`**
     - 読み込みたいRSSフィードのURLを設定します。
     - WordPress系サイトの場合は、URLの最後に/feedをつけます。
 
