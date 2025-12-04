@@ -1,13 +1,17 @@
 # template-rss-reader-llm
-このプロジェクトは、RSSフィードの情報をLLM（大規模言語モデル）を使って要約し、 
+
+このプロジェクトは、RSSフィードの情報をLLM（大規模言語モデル）を使って要約し、
 Discordに通知するためのテンプレートです。
 
 ## 前提条件
+
 リポジトリがパブリックであること。
-※デフォルトの大規模モデルの gpt-oss:20b はRAMが16GB以上必要です。<br>
+※デフォルトの大規模モデルの gpt-oss:20b はRAMが16GB以上必要です。
+
 プライベートリポジトリの場合は8GBに減ってしまうため GitHub Actions をセルフホストするか、大規模言語モデルを他のものに変更する必要があります。
 
 ## 使い方
+
 このテンプレートをリポジトリで利用するには、以下の3つのステップを設定してください。
 
 ### 1. Modelfileをカスタマイズ
@@ -30,18 +34,13 @@ Discordに通知するためのテンプレートです。
   - サーバーを右クリック > サーバー設定 > 連携サービス > ウェブフック > 新しいウェブフック > お名前、チャンネル名を設定し、ウェブフックURLをコピー
 
 - **`RSS_URL`**: 読み込みたいRSSフィードのURLを設定します。
-  - WordPress系サイトの場合は、URLの最後に/feedをつけます。　例）https://サイトURL/feed
+  - WordPress系サイトの場合は、URLの最後に/feedをつけます。　例）<https://サイトURL/feed>
 
 -----
 
-### 3. GitHub Actions の有効化
-
-最後に、このプロジェクトの自動化の仕組みであるGitHub Actionsを有効にします。
-
-リポジトリ内にある `.github/workflows-template` という名前のフォルダを `.github/workflows` に変更します。
-これだけで設定は完了です。GitHub Actionsが有効になり、2時間毎にRSSフィードをチェックして、要約がDiscordに自動で投稿されるようになります。
-なお、チェックする周期の時間は　`ollama.yml` から変更できます。
+これだけで設定は完了です。GitHub Actions で、2時間毎にRSSフィードをチェックして、要約がDiscordに自動で投稿されるようになります。
+なお、チェックする周期の時間は　`.github/workflows/ollama.yml` から変更できます。
 
 ## 動作確認
-Actions > Ollama Python Push Workflow > Run workflow > Run workflow を実行<br>
-2-3分経つと✓が入ります。
+
+Actions > Ollama Python Push Workflow > Run workflow > Run workflow を実行
