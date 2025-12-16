@@ -28,6 +28,7 @@ def extract_summary_info(text: str, timeout_seconds: int = 60) -> Optional[Summa
                     'content': text,
                 },
             ],
+            think="high",
             stream=True
         )
 
