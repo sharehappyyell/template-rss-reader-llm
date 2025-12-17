@@ -20,7 +20,7 @@ async def process_link(url: str):
     if not content:
         return
 
-    prompt = content[:MAX_PROMPT_LENGTH]
+    prompt = content["text"][:MAX_PROMPT_LENGTH]
 
     # Ollamaで情報を抽出
     answer = generate_answer(prompt)
@@ -32,7 +32,7 @@ async def process_link(url: str):
     print("🔗 Discordに結果を送信中...")
     send_to_discord(discord_payload(
         answer,
-        content.redirected_url
+        content["url"]
     ), DISCORD_WEBHOOK_URL)
 
 

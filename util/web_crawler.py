@@ -5,7 +5,7 @@ from typing import Optional
 from config import CRAWLER_CONFIG, BROWSER_CONFIG
 
 
-async def get_content_from_url(url: str) -> str | None:
+async def get_content_from_url(url: str) -> dict[str, str] | None:
     """
     指定されたURLからコンテンツをクロールする。
     """
@@ -13,7 +13,7 @@ async def get_content_from_url(url: str) -> str | None:
         async with AsyncWebCrawler(config=BROWSER_CONFIG) as crawler:
             content = await crawler.arun(url=url, config=CRAWLER_CONFIG)
             if content.markdown:
-                return content.markdown.fit_markdown
+                return {"text": content.markdown.fit_markdown, "url": content.redirected_url}
             else:
                 return None
 
