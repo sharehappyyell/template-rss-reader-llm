@@ -20,13 +20,12 @@ async def process_link(url: str):
     if not content:
         return
 
-    # Ollamaに渡すプロンプトを作成（長すぎる場合は切り詰める）
-    prompt = content.markdown.fit_markdown[:MAX_PROMPT_LENGTH]
+    prompt = content[:MAX_PROMPT_LENGTH]
 
     # Ollamaで情報を抽出
     answer = generate_answer(prompt)
 
-    if not answer | answer.error:
+    if not answer or answer["error"]:
         return
 
     # Discordに結果を送信
