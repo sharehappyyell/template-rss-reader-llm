@@ -1,41 +1,29 @@
+import asyncio
 import json
-from typing import Optional
-import xml.etree.ElementTree as ET
-import ollama
-
-# 設定ファイルからモデル名をインポート
-from config import OLLAMA_MODEL_NAME
+from ollama import AsyncClient
+from config import OLLAMA_MODEL_NAME, OLLAMA_TIMEOUT_SECONDS
 
 
-def generate_answer(text: str) -> dict[str, object] | None:
-    """
-    Ollamaモデルを呼び出してテキストから要約情報を抽出する。
-    指定した時間以上かかった場合はタイムアウトとして処理し、それまでの生成結果を返す。
-    """
+async def generate_answer(text: str):
     print("🤖 Ollamaで要約を生成しています...")
-
     try:
-        response = ollama.chat(
-            model=OLLAMA_MODEL_NAME,
-            messages=[
-                {
-                    'role': 'user',
-                    'content': text,
-                },
-            ],
-            think="high"
+        client = AsyncClient()
+
+        # asyncio.wait_for でタイムアウトを管理
+        response = await asyncio.wait_for(
+            client.chat(
+                model=OLLAMA_MODEL_NAME,
+                messages=[{'role': 'user', 'content': text}],
+                think="high"
+            ),
+            timeout=OLLAMA_TIMEOUT_SECONDS
         )
 
-        result = json.loads(response['message']['content'])
-        return result
+        return json.loads(response['message']['content'])
 
-    except Exception as e:
-        print(f"❌ Ollamaでの要約中にエラーが発生しました: {e}")
-        print(
-            f"Ollamaがローカルで起動しているか、またモデル '{OLLAMA_MODEL_NAME}' が利用可能か確認してください。")
+    except asyncio.TimeoutError:
+        print("⏰ タイムアウトしました")
         return None
-
-
-def is_none_element(element: Optional[ET.Element]) -> bool:
-    """要素がNoneまたはテキスト内容が「なし」か判定するヘルパー関数。"""
-    return element is None or element.text is None or element.text.strip() == 'なし'
+    except Exception as e:
+        print(f"❌ エラー: {e}")
+        return None

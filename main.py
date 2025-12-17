@@ -23,9 +23,10 @@ async def process_link(url: str):
     prompt = content["text"][:MAX_PROMPT_LENGTH]
 
     # Ollamaで情報を抽出
-    answer = generate_answer(prompt)
+    answer = await generate_answer(prompt)
 
     if not answer or answer["error"]:
+        print(f"❌ Discordに送信する情報がありませんでした。")
         return
 
     # Discordに結果を送信
