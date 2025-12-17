@@ -7,7 +7,7 @@ DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "DISCORD_WEBHOOK_URL")
 OLLAMA_MODEL_NAME = os.getenv("OLLAMA_MODEL_NAME", "extractor")
 TIMESTAMP_FILE = os.getenv("TIMESTAMP_FILE", "last_item.json")
 MAX_LOAD_ITEM = int(os.getenv("MAX_LOAD_ITEM", 2))
-MAX_PROMPT_LENGTH = int(os.getenv("MAX_PROMPT_LENGTH", 4096))
+MAX_PROMPT_LENGTH = int(os.getenv("MAX_PROMPT_LENGTH", 8192))
 
 # --- クローラー設定 ---
 PRUNE_FILTER = PruningContentFilter(
