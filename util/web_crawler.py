@@ -1,5 +1,4 @@
 from crawl4ai import AsyncWebCrawler
-from typing import Optional
 
 # 設定ファイルからクローラー設定をインポート
 from config import CRAWLER_CONFIG, BROWSER_CONFIG

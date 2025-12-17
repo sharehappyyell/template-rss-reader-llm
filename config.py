@@ -1,5 +1,4 @@
 import os
-from dataclasses import dataclass
 from crawl4ai import CrawlerRunConfig, BrowserConfig, DefaultMarkdownGenerator, PruningContentFilter
 
 # --- 設定 (環境変数がなければデフォルト値を使用) ---
