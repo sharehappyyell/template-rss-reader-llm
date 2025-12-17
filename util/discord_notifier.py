@@ -1,7 +1,7 @@
 import requests
 
 
-def send_to_discord(payload: dict, webhook_url: str):
+def send_to_discord(payload: dict[str, object], webhook_url: str):
     """
     指定されたペイロードをDiscordのWebhook URLに送信する関数。
 

@@ -5,7 +5,7 @@ from typing import Optional
 from config import CRAWLER_CONFIG, BROWSER_CONFIG
 
 
-async def get_content_from_url(url: str) -> Optional[dict]:
+async def get_content_from_url(url: str) -> Optional[dict[str, object]]:
     """
     指定されたURLからコンテンツをクロールする。
     """
